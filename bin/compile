@@ -24,10 +24,10 @@ ORACLE_INSTANT_CLIENT_DIR="#{ARGV[0]}/oracle"
 ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR="#{ARGV[0]}/downloads"
 
 indent "Making folders..."
-FileUtils::mkdir_p "#{ORACLE_INSTANT_CLIENT_DIR}"
-FileUtils::mkdir_p "#{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR}"
+FileUtils::mkdir_p ORACLE_INSTANT_CLIENT_DIR
+FileUtils::mkdir_p ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR
 
-`cd #{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR}`
+puts "Failed to create the folder" unless (File.exists?(ORACLE_INSTANT_CLIENT_DIR) && File.exists?(ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR))
 
 indent "Downloading and extracting archives from #{DROPBOX_LINK}..."
 `curl -o #{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR}/basic.zip #{ORACLE_INSTANT_BASIC_ZIP}`
