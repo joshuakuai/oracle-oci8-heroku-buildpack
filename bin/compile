@@ -28,21 +28,21 @@ indent "Making folders..."
 `mkdir -p #{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR}`
 
 indent "Downloading and extracting archives from #{DROPBOX_LINK}..."
-result = `curl -o #{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR}/basic.zip #{ORACLE_INSTANT_BASIC_ZIP} && unzip -v #{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR}/basic.zip -d #{ORACLE_INSTANT_CLIENT_DIR}`
+result = `curl -o #{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR}/basic.zip #{ORACLE_INSTANT_BASIC_ZIP} && unzip #{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR}/basic.zip -d #{ORACLE_INSTANT_CLIENT_DIR}`
 
 unless $?.success?
   failDownload
   exit 1
 end
 
-result = `curl -o #{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR}/sdk.zip #{ORACLE_INSTANT_SDK_ZIP} && unzip -v #{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR}/sdk.zip -d #{ORACLE_INSTANT_CLIENT_DIR}`
+result = `curl -o #{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR}/sdk.zip #{ORACLE_INSTANT_SDK_ZIP} && unzip #{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR}/sdk.zip -d #{ORACLE_INSTANT_CLIENT_DIR}`
 
 unless $?.success?
   failDownload
   exit 1
 end
 
-result = `curl -o #{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR}/sqlplus.zip #{ORACLE_INSTANT_SQLPLUS_ZIP} && unzip -v #{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR}/sqlplus.zip -d #{ORACLE_INSTANT_CLIENT_DIR}`
+result = `curl -o #{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR}/sqlplus.zip #{ORACLE_INSTANT_SQLPLUS_ZIP} && unzip #{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR}/sqlplus.zip -d #{ORACLE_INSTANT_CLIENT_DIR}`
 
 unless $?.success?
   failDownload
