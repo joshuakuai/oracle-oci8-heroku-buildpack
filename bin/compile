@@ -3,7 +3,6 @@
 require 'tempfile'
 require 'fileutils'
 require 'open-uri'
-require 'zip'
 
 $stdout.sync = true
 
