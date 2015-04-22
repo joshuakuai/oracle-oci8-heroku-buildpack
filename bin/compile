@@ -51,7 +51,7 @@ end
 
 indent "All files have been downloaded."
 
-`ls -a`
+`ls -a #{ORACLE_INSTANT_CLIENT_DIR}`
 `LD_LIBRARY_PATH=#{ORACLE_INSTANT_CLIENT_DIR}/instantclient_12_1`
 `export LD_LIBRARY_PATH`
 
