@@ -27,6 +27,8 @@ indent "Making folders..."
 `mkdir -p -v #{ORACLE_INSTANT_CLIENT_DIR}`
 `mkdir -p -v #{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR}`
 
+`cd #{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR}`
+
 indent "Downloading and extracting archives from #{DROPBOX_LINK}..."
 `curl -o #{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR}/basic.zip #{ORACLE_INSTANT_BASIC_ZIP}`
 unless $?.success?
