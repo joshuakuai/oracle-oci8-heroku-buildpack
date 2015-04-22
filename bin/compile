@@ -3,6 +3,7 @@
 require 'tempfile'
 require 'fileutils'
 require 'open-uri'
+require 'zip'
 
 $stdout.sync = true
 
@@ -39,31 +40,37 @@ open("#{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR}/basic.zip", 'wb') do |file|
   file << open(ORACLE_INSTANT_BASIC_ZIP).read
 end
 
-`unzip #{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR}/basic.zip -d #{ORACLE_INSTANT_CLIENT_DIR}`
-unless $?.success?
-  failDownload
-  exit 1
-end
+Zip::ZipFile.open("#{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR}/basic.zip") { |zip_file|
+     zip_file.each { |f|
+     f_path = File.join(ORACLE_INSTANT_CLIENT_DIR, f.name)
+     FileUtils.mkdir_p(File.dirname(f_path))
+     zip_file.extract(f, f_path) unless File.exist?(f_path)
+   }
+}
 
 open("#{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR}/sdk.zip", 'wb') do |file|
   file << open(ORACLE_INSTANT_SDK_ZIP).read
 end
 
-`unzip #{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR}/sdk.zip -d #{ORACLE_INSTANT_CLIENT_DIR}`
-unless $?.success?
-  failDownload
-  exit 1
-end
+Zip::ZipFile.open("#{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR}/sdk.zip") { |zip_file|
+     zip_file.each { |f|
+     f_path = File.join(ORACLE_INSTANT_CLIENT_DIR, f.name)
+     FileUtils.mkdir_p(File.dirname(f_path))
+     zip_file.extract(f, f_path) unless File.exist?(f_path)
+   }
+}
 
 open("#{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR}/sqlplus.zip", 'wb') do |file|
   file << open(ORACLE_INSTANT_SQLPLUS_ZIP).read
 end
 
-`unzip #{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR}/sqlplus.zip -d #{ORACLE_INSTANT_CLIENT_DIR}`
-unless $?.success?
-  failDownload
-  exit 1
-end
+Zip::ZipFile.open("#{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR}/sqlplus.zip") { |zip_file|
+     zip_file.each { |f|
+     f_path = File.join(ORACLE_INSTANT_CLIENT_DIR, f.name)
+     FileUtils.mkdir_p(File.dirname(f_path))
+     zip_file.extract(f, f_path) unless File.exist?(f_path)
+   }
+}
 
 indent "All files have been downloaded."
 
