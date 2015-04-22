@@ -21,26 +21,28 @@ ORACLE_INSTANT_SDK_ZIP="#{DROPBOX_LINK}/instantclient-sdk-linux-12.1.0.2.0.zip"
 ORACLE_INSTANT_SQLPLUS_ZIP="#{DROPBOX_LINK}/instantclient-sqlplus-linux-12.1.0.2.0.zip"
 
 ORACLE_INSTANT_CLIENT_DIR="#{ARGV[0]}/oracle_instantclient"
+ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR="#{ARGV[0]}/downloads"
 
 indent "Making folders..."
 `mkdir -p #{ORACLE_INSTANT_CLIENT_DIR}`
+`mkdir -p #{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR}`
 
 indent "Downloading and extracting archives from #{DROPBOX_LINK}..."
-result = `curl #{ORACLE_INSTANT_BASIC_ZIP} && unzip instantclient-basic-linux-12.1.0.2.0.zip -d #{ORACLE_INSTANT_CLIENT_DIR}`
+result = `curl -o #{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR} #{ORACLE_INSTANT_BASIC_ZIP} && unzip #{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR}/instantclient-basic-linux-12.1.0.2.0.zip -d #{ORACLE_INSTANT_CLIENT_DIR}`
 
 unless $?.success?
   failDownload
   exit 1
 end
 
-result = `curl #{ORACLE_INSTANT_SDK_ZIP} && unzip instantclient-sdk-linux-12.1.0.2.0.zip -d #{ORACLE_INSTANT_CLIENT_DIR}`
+result = `curl -o #{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR} #{ORACLE_INSTANT_SDK_ZIP} && unzip #{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR}/instantclient-sdk-linux-12.1.0.2.0.zip -d #{ORACLE_INSTANT_CLIENT_DIR}`
 
 unless $?.success?
   failDownload
   exit 1
 end
 
-result = `curl #{ORACLE_INSTANT_SQLPLUS_ZIP} && unzip instantclient-sqlplus-linux-12.1.0.2.0.zip -d #{ORACLE_INSTANT_CLIENT_DIR}`
+result = `curl -o #{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR} #{ORACLE_INSTANT_SQLPLUS_ZIP} && unzip #{ORACLE_INSTANT_CLIENT_DOWNLOAD_DIR}/instantclient-sqlplus-linux-12.1.0.2.0.zip -d #{ORACLE_INSTANT_CLIENT_DIR}`
 
 unless $?.success?
   failDownload
