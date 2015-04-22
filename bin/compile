@@ -3,6 +3,8 @@
 require 'tempfile'
 require 'fileutils'
 require 'open-uri'
+require 'rubygems'
+require 'zip'
 
 $stdout.sync = true
 
